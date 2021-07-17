@@ -1,5 +1,11 @@
 
 CovLabProject/src/main/webapp/WEB-INF/jspwork/SESSIONS.ser
+<<<<<<< Updated upstream
 CovLabProject/src/main/webapp/WEB-INF/context.xml
 CovLabProject/src/main/webapp/META-INF/context.xml
 CovLabProject/src/main/webapp/META-INF/context.xml
+=======
+CovLabProject/src/main/webapp/WEB-INF/jspwork/org/apache/jsp/index_jsp.class
+CovLabProject/src/main/webapp/WEB-INF/jspwork/org/apache/jsp/index_jsp.java
+CovLabProject/src/main/webapp/WEB-INF/jspwork/org/apache/jsp/index_jsp.java
+>>>>>>> Stashed changes
