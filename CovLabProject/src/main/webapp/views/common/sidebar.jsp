@@ -25,6 +25,7 @@
 					<ul>
 						<li><a href="/semi/index.jsp">백신 예약</a></li>
 						<li><a href="/semi/views/information/information.jsp">뉴스/백신 정보</a></li>
+<<<<<<< HEAD
 						<li>
 						<% if(true){ //관리자용%>
 							<a href="/semi/views/board/boardAdmin.jsp">접종 후기 관리</a>
@@ -40,6 +41,14 @@
 							<a href="/semi/index.jsp">MY PAGE</a>
 						<% } %>
 						</li>
+=======
+						<% if(true){ //관리자 %>
+							<li><a href="/semi/blistadmin">접종 후기 관리</a></li>
+						<% } else { %>
+							<li><a href="/semi/blist">접종 후기</a></li>
+						<% } %>
+						<li><a href="/semi/index.jsp">MY PAGE</a></li>
+>>>>>>> 4d9b06480c850f8ac5836ff7326eab40b705fbd0
 					</ul>
 
 

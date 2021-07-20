@@ -10,7 +10,7 @@ import member.model.vo.Member;
 public class MemberDao {
 
 	public Member searchUser(Connection conn, String username, String userrn) {
-		Member member = new Member();
+		Member member = null;
 		PreparedStatement pstmt = null;
 		ResultSet rset =null;
 		
@@ -24,9 +24,9 @@ public class MemberDao {
 			
 			rset = pstmt.executeQuery();
 			if(rset.next()) {
-				Member m= new Member();
-				m.setUserName(username);
-				m.setUserRn(userrn);
+				member = new Member();
+				member.setUserName(username);
+				member.setUserRn(userrn);
 				
 			}
 		} catch (Exception e) {

@@ -1,2 +1,13 @@
+.project
+.metadata
+.classpath
+.settings/
+.loadpath
+.buildpath
+/build/
+/bin/
+target/
+META-INF/
+classes/
+jspwork/
 
-CovLabProject/src/main/webapp/META-INF/context.xml

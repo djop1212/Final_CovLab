@@ -2,6 +2,7 @@ package member.controller;
 
 import java.io.IOException;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -36,11 +37,13 @@ public class MemberCheckServlet extends HttpServlet {
 		String userrn = request.getParameter("userrn");
 		
 		Member member= new MemberService().searchUser(username, userrn);
-		
-		if(member != null) {
-			response.sendRedirect("/semi/views/member/login.jsp"); //이미 등록된 경우
+		System.out.print(username + userrn);
+		RequestDispatcher view = null;
+		if(member != null) { //이미 등록된 회원
+			   response.sendRedirect("/semi/views/member/login.jsp");
 		}else {
-			response.sendRedirect("/semi/views/member/register.html"); //회원아이디가 없는 경우
+			    view = request.getRequestDispatcher("views/member/register.html");
+			    view.forward(request, response);
 		}
 	}
 
