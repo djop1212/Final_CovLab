@@ -1,5 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8" %>
+<%
+	//로그인 확인을 위해서 내장된 session 객체를 이용
+	//Member loginMember = (Member)session.getAttribute("loginMember");
+%> 
 <!DOCTYPE html>
 <html>
 <head>
@@ -21,8 +25,21 @@
 					<ul>
 						<li><a href="/semi/index.jsp">백신 예약</a></li>
 						<li><a href="/semi/views/information/information.jsp">뉴스/백신 정보</a></li>
-						<li><a href="/semi/views/board/boardMain.jsp">접종 후기</a></li>
-						<li><a href="/semi/index.jsp">MY PAGE</a></li>
+						<li>
+						<% if(true){ //관리자용%>
+							<a href="/semi/views/board/boardAdmin.jsp">접종 후기 관리</a>
+						<% }else{ %>
+							<a href="/semi/views/board/boardMain.jsp">접종 후기</a>
+						<% } %>
+						</li>
+						<li>
+						<% if(true){ //로그인%> <!--회원가입 창 만들었는데 아니다 싶으면 지워주세여  -->
+						<a href="/semi/views/member/idcheck.jsp">회원가입</a>
+							
+						<% }else{  //로그인 아닐시 %>
+							<a href="/semi/index.jsp">MY PAGE</a>
+						<% } %>
+						</li>
 					</ul>
 
 

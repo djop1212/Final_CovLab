@@ -30,17 +30,17 @@
                         </div>
                         <div class="login-form">
                             <h4>회원 확인</h4>
-                            <form action="/CovLab/mcheck">
+                            <form action="/semi/mcheck">
                                 <div class="form-group">
-                                    <label>아아디</label>
-                                    <input type="text" class="form-control" placeholder="아이디">
+                                    <label>이름</label>
+                                    <input type="text" class="form-control" name="username"placeholder="이름">
                                 </div>
                                 <div class="form-group">
                                      <label>주민번호</label>
                                       <br><br>
-                                  <input type="text"class="form-group" maxlength="6" value="" placeholder="주민번호"onkeyup="onlyNumber(this)">
-									&nbsp; <label>-</label> &nbsp;
-									<input type="text" class="form-group"maxlength="6" value="" onkeyup="onlyNumber(this)">
+                                  <input type="text"class="form-control" name="userrn" placeholder="주민번호">
+									
+									
                                 </div>
                                 <button type="submit" class="btn btn-primary btn-flat m-b-15">제출하기</button>
                                 <div class="register-link text-center">
