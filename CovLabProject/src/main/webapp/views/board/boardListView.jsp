@@ -75,8 +75,8 @@ int currentPage = ((Integer) request.getAttribute("currentPage")).intValue();
 									<div class="table-responsive">
 										<table class="display table table-borderd table-hover">
 											<form>
-												<select name="search" id="search">
-													<option value="selectnone" id="searchall">=== 검색 ===</option>
+												<select name="searchForm" id="search">
+													<option value="selectnone">=== 검색 ===</option>
 													<option value="searchboardno">글 번호</option>
 													<option value="searchboardtitle">제 목</option>
 													<option value="searchboardwriter">작성자</option>
