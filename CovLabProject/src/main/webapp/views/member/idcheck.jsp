@@ -1,8 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8" import="member.model.vo.Member"%>
-    <%
-    Member member = (Member)request.getAttribute("member");
-    %>
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -16,22 +13,8 @@
     <link href="/semi/resources/css/lib/helper.css" rel="stylesheet">
     <link href="/semi/resources/css/style.css" rel="stylesheet">
     <title>회원 확인</title>
-<script type="text/javascript" src="resources/js/jquery-3.6.0.min.js"></script>
- <script type="text/javascript">
- function IDCheck(){
-        var username = document.getElementById("username").value;
-        var userrn = document.getElementById("userrn").value;
-	 if(username !== null && userrn !== null){
-		 alert("이미 등록되어있습니다.");
-		 
-	 }else{
-		 alert("등록된 정보가 없습니다.");
-		 
-	 }
 
-	 
- }
- </script>   
+    
 
 </head>
 
@@ -47,23 +30,21 @@
                         </div>
                         <div class="login-form">
                             <h4>회원 확인</h4>
-                            <form action="/semi/mcheck">
+                            <form action="/CovLab/mcheck">
                                 <div class="form-group">
-                                    <label>이름</label>
-                                    <input type="text" class="form-control" name="username" id="username" placeholder="이름">
+                                    <label>아아디</label>
+                                    <input type="text" class="form-control" placeholder="아이디">
                                 </div>
                                 <div class="form-group">
                                      <label>주민번호</label>
                                       <br><br>
-                                  <input type="text"class="form-control" name="userrn" id="userrn" placeholder="주민번호">
-									
-									
+                                  <input type="text"class="form-group" maxlength="6" value="" placeholder="주민번호"onkeyup="onlyNumber(this)">
+									&nbsp; <label>-</label> &nbsp;
+									<input type="text" class="form-group"maxlength="6" value="" onkeyup="onlyNumber(this)">
                                 </div>
-                              
-                                <button  onclick="IDCheck();" id="mbutton"value="submit"class="btn btn-primary btn-flat m-b-15">제출하기</button>
-                              
+                                <button type="submit" class="btn btn-primary btn-flat m-b-15">제출하기</button>
                                 <div class="register-link text-center">
-                                    <p>돌아가기 <a href="/semi/"> 홈페이지</a></p>
+                                    <p>돌아가기 <a href="#"> 홈페이지</a></p>
                                 </div>
                             </form>
                         </div>
