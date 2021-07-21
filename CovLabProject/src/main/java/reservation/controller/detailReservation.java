@@ -9,6 +9,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import reservation.service.reservationService;
 import reservation.vo.Hospital;
@@ -43,18 +44,25 @@ public class detailReservation extends HttpServlet {
 		
 		RequestDispatcher view = null;
 		if(hp != null) {
+			HttpSession session = request.getSession(true);
+			
+			/*í…ŒìŠ¤íŠ¸ìš© ì„¸ì…˜ ìƒì„±*/
+			session.setAttribute("user_id", "user01");
 			view = request.getRequestDispatcher(
 					"views/reservation/detail_reservation.jsp");
+			
+			System.out.println("ì„¸ì…˜ : "+session.getId());
 			request.setAttribute("hp", hp);
 			view.forward(request, response);
 		}else {
 			view = request.getRequestDispatcher(
 					"views/common/error.jsp");
 			request.setAttribute("message", 
-					reg_bus_no + "¹ø º´¿ø »ó¼¼Á¶È¸ ½ÇÆĞ!");
+					reg_bus_no + "ë²ˆ ë³‘ì› ì¡°íšŒ ì‹¤íŒ¨!");
 			view.forward(request, response);
 		}
 		
+	
 		
 	}
 
