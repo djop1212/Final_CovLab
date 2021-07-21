@@ -1,3 +1,4 @@
+CovLabProject/src/main/webapp/WEB-INF/jspwork/org/apache/jsp/index_jsp.class
 .project
 .metadata
 .classpath
@@ -10,4 +11,21 @@ target/
 META-INF/
 classes/
 jspwork/
-
+CovLabProject/src/main/webapp/WEB-INF/jspwork/org/apache/jsp/index_jsp.class
+CovLabProject/src/main/webapp/WEB-INF/jspwork/org/apache/jsp/index_jsp.java
+CovLabProject/src/main/webapp/WEB-INF/jspwork/org/apache/jsp/views/information/information_jsp.java
+CovLabProject/src/main/webapp/WEB-INF/jspwork/org/apache/jsp/views/member/login_jsp.java
+CovLabProject/src/main/webapp/WEB-INF/jspwork/org/apache/jsp/views/member/login_jsp.class
+CovLabProject/src/main/webapp/WEB-INF/jspwork/org/apache/jsp/views/member/idcheck_jsp.java
+CovLabProject/src/main/webapp/WEB-INF/jspwork/org/apache/jsp/views/member/idcheck_jsp.class
+CovLabProject/src/main/webapp/views/member/login.jsp
+CovLabProject/src/main/webapp/views/member/idcheck.jsp
+CovLabProject/src/main/webapp/views/member/enroll.html
+CovLabProject/src/main/java/member/model/servcie/MemberService.java
+CovLabProject/src/main/java/member/model/dao/MemberDao.java
+CovLabProject/src/main/java/member/controller/MemberCheckServlet.java
+CovLabProject/src/main/java/member/controller/LogoutServlet.java
+CovLabProject/src/main/java/member/controller/LoginServelt.java
+CovLabProject/src/main/java/member/controller/EnrollServlet.java
+CovLabProject/src/main/java/member/controller/DuplicateIdCheck.java
+CovLabProject/src/main/webapp/WEB-INF/jspwork/org/apache/jsp/views/member/login_jsp.java
