@@ -80,4 +80,59 @@ public class MemberDao {
 		   
 		return member;
 	}
+
+	public int insertMember(Connection conn, Member member) {
+		int result = 0;
+		PreparedStatement pstmt = null;
+		
+		String query ="insert into members values ((select max(user_no) + 1 from members), default, ?, ?, ?, ?, ?, ?, ?, default, ?, default)";
+	
+		try {
+			pstmt = conn.prepareStatement(query);
+			pstmt.setString(1, member.getUserId());
+			pstmt.setString(2, member.getUserPw());
+			pstmt.setString(3, member.getUserName());
+			pstmt.setString(4, member.getUserRn());
+			pstmt.setString(5, member.getUserEmail());
+			pstmt.setString(6, member.getUserPhone());
+			pstmt.setString(7, member.getUserAddress());
+			pstmt.setString(8, member.getSmsAgr());
+			
+			result=pstmt.executeUpdate();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}finally {
+			close(pstmt);
+		}return result;
+	}
+
+	public int selectCheckId(Connection conn, String userid) {
+		 int idCount = 0;
+			PreparedStatement pstmt = null;
+			ResultSet rset = null;
+			
+			String query = "select count(user_id) from members where user_id = ?";
+			
+			try {
+				pstmt = conn.prepareStatement(query);
+				
+				pstmt.setString(1, userid);
+			
+				 
+				rset =pstmt.executeQuery();
+				if(rset.next()) {
+					idCount = rset.getInt(1);
+					
+					System.out.println("idCount : " + idCount);
+				}
+				
+			} catch (Exception e) {
+				e.printStackTrace();
+			}finally {
+				close(rset);
+				close(pstmt);
+			}
+			   
+			return idCount;
+		}
 }

@@ -14,6 +14,48 @@
     <link href="/semi/resources/css/lib/bootstrap.min.css" rel="stylesheet">
     <link href="/semi/resources/css/lib/helper.css" rel="stylesheet">
     <link href="/semi/resources/css/style.css" rel="stylesheet">
+    
+ <script type="text/javascript" src="/semi/resources/js/jquery-3.6.0.min.js"></script>
+ <script type="text/javascript">
+ function dupIDCheck(){
+	 $.ajax({
+			url: "/semi/dupid",
+			type: "post",
+			data: {userid: $("#userid").val()},
+			success: function(data){
+				console.log("success : " + data);
+				if(data == "ok"){
+					alert("사용 가능한 아이디입니다.");
+					$("#upwd").focus();
+				}else{
+					alert("이미 사용중인 아이디입니다.");
+					$("#userid").select();
+				}
+			},
+			error: function(jqXHR, textStatus, errorThrown){
+				console.log("error : " + jqXHR + ", " 
+						+ textStatus + ", " + errorThrown);
+			}
+		});
+		
+		//버튼 클릭이벤트 취소 (submit 으로 클릭 전달 막기 위함)
+		return false;
+	}
+ function validate(){
+	    var pwValue = document.getElementById("userpw").value;
+		var pwValue2 = document.getElementById("userpw2").value;
+		
+		if(pwValue !== pwValue2){
+			alert("암호와 암호확인의 값이 일치하지 않습니다.");
+			document.getElementById("userpw2").value = "";
+			document.getElementById("userpw").select();
+			return false;  //전송 취소함
+		}
+		
+		return true;  //전송보냄
+	}
+ 
+ </script>
 </head>
 
 <body class="bg-primary">
@@ -28,51 +70,47 @@
                         </div>
                         <div class="login-form">
                             <h4>회원가입</h4>
-                            <form>
+                            <form action="/semi/enroll" method="post" onsubmit="return validate();">
                                 <div class="form-group">
                                     <label>이름</label>
-                                    <input type="text" class="form-control" placeholder="이름">
+                                    <input type="text" name="username" id="username" class="form-control" placeholder="이름">
                                 </div>
                                  <div class="form-group">
                                     <label>아이디</label>
-                                    <input type="text" class="form-control" placeholder="아이디">
-                                    <input type="button" value="중복체크"  style="background-color: white; ">
-                                   <!-- 중복체크 필요하나요? 저희 가입전에 아이디 체크하는데 -->
+                                    <input type="text" class="form-control" name="userid" id="userid" placeholder="아이디" required>
+                                    <input type="button" value="중복체크" onclick="return dupIDCheck();">
+                                   
                                 </div>
                                  <div class="form-group">
                                     <label>비밀번호</label>
-                                    <input type="password" class="form-control" placeholder="비밀번호">
+                                    <input type="password" name="userpw" id="userpw" class="form-control" placeholder="비밀번호" required>
                                 </div>
                                  <div class="form-group">
                                     <label>비밀번호 확인</label>
-                                    <input type="password"class="form-control" placeholder="비밀번호">
+                                    <input type="password" name="userpw2" id="userpw2" class="form-control" placeholder="비밀번호" required>
                                 </div>
                                  <div class="form-group">
-                                    <label>주민번호</label>
-                                    <div style="width:300; height:100; padding:1" >
-                                   <input type="text" maxlength="6" value="" onkeyup="onlyNumber(this)">
-									&nbsp; <label>-</label> &nbsp;
-									<<input type="text" maxlength="6" value="" onkeyup="onlyNumber(this)">
-									</div>
+                                     <label>주민번호</label>
+                                      <br>
+                                  <input type="text"class="form-control" name="userrn" id="userrn" placeholder="주민번호" required>
                                 </div>
-                                
                                 <div class="form-group">
                                     <label>이메일</label>
-                                    <input type="email" class="form-control" placeholder="Email">
+                                    <input type="email" name="email" id="email" class="form-control" placeholder="Email">
                                 </div>
                                  <div class="form-group">
                                     <label>전화번호</label>
-                                    <input type="phone" class="form-control" placeholder="전화번호">
+                                    <input type="phone" name="phone" id="phone" class="form-control" placeholder="전화번호">
                                 </div>
                                  <div class="form-group">
                                     <label>주소</label>
-                                    <input type="text" class="form-control" placeholder="주소">
+                                    <input type="text" name="address" id="address" class="form-control" placeholder="주소" required>
                                 </div>
                                  <div class="form-group">
                                     <label>수신동의</label>
                                     <Br>
-                                    <label> <input type="radio" value="yes" name="users"  checked>네.</label> &nbsp;
-                                    <label> <input type="radio" value="no" name="users"  >아니오.<label>
+                                    <label> <input type="radio" value="Y" name="smsagr" id="smsagr"  checked >네.</label> &nbsp;
+                                    <label> <input type="radio" value="N" name="smsagr" id="smsagr"  >아니오.<label>
                                 </div>
                               
                                 <div class="checkbox">

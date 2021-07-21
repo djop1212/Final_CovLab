@@ -42,8 +42,8 @@ public class MemberCheckServlet extends HttpServlet {
 		if(idCount > 0) { //이미 등록된 회원
 			   response.sendRedirect("/semi/views/member/login.jsp");
 		}else {
-			    view = request.getRequestDispatcher("views/member/register.html");
-			    view.forward(request, response);
+			 response.sendRedirect("/semi/views/member/enroll.html");
+			    //view.forward(request, response);
 		}
 	}
 
