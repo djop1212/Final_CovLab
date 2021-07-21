@@ -36,10 +36,10 @@ public class MemberCheckServlet extends HttpServlet {
 		String username = request.getParameter("username");
 		String userrn = request.getParameter("userrn");
 		
-		Member member= new MemberService().searchUser(username, userrn);
+		int idCount= new MemberService().searchUser(username, userrn);
 		System.out.print(username + userrn);
 		RequestDispatcher view = null;
-		if(member != null) { //이미 등록된 회원
+		if(idCount > 0) { //이미 등록된 회원
 			   response.sendRedirect("/semi/views/member/login.jsp");
 		}else {
 			    view = request.getRequestDispatcher("views/member/register.html");

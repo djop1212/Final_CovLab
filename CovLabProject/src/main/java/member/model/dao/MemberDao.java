@@ -9,26 +9,26 @@ import java.sql.ResultSet;
 import member.model.vo.Member;
 public class MemberDao {
 
-	public Member searchUser(Connection conn, String username, String userrn) {
-		Member member = null;
+	public int searchUser(Connection conn, String username, String userrn) {
+        int idCount = 0;
 		PreparedStatement pstmt = null;
-		ResultSet rset =null;
+		ResultSet rset = null;
 		
-		String query = "select * from members where user_name = ? and user_rn = ?";
+		String query = "select count(user_id) from members where user_name = ? and user_rn = ?";
 		
 		try {
 			pstmt = conn.prepareStatement(query);
 			
 			pstmt.setString(1, username);
 			pstmt.setString(2, userrn);
-			
-			rset = pstmt.executeQuery();
+			 
+			rset =pstmt.executeQuery();
 			if(rset.next()) {
-				member = new Member();
-				member.setUserName(username);
-				member.setUserRn(userrn);
+				idCount = rset.getInt(1);
 				
+				System.out.println("idCount : " + idCount);
 			}
+			
 		} catch (Exception e) {
 			e.printStackTrace();
 		}finally {
@@ -36,7 +36,7 @@ public class MemberDao {
 			close(pstmt);
 		}
 		   
-		return member;
+		return idCount;
 	}
 
 	public Member selectLogin(Connection conn, String userid, String userpw) {
