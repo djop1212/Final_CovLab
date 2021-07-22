@@ -14,6 +14,7 @@ import javax.servlet.http.HttpSession;
 import reservation.model.service.reservationService;
 import reservation.model.vo.Hospital;
 import reservation.model.vo.Members;
+import reservation.model.vo.Reservation;
 import reservation.model.vo.Vaccine;
 
 /**
@@ -43,8 +44,10 @@ public class detailReservation extends HttpServlet {
 		
 		/*테스트용 세션 생성*/
 		HttpSession session = request.getSession(true);
-		session.setAttribute("user_id", "user01");
+		session.setAttribute("user_id", "user02");
 		
+		String user_id = (String) session.getAttribute("user_id");
+		Members mb = rservice.selectOneMember(user_id);
 		
 		//테스트용 사업자번호 부여
 		String reg_bus_no = "252-12-62156";
@@ -55,6 +58,7 @@ public class detailReservation extends HttpServlet {
 		
 		//hp 객체에 hp정보 담기
 		Hospital hp = rservice.selectOneHp(reg_bus_no);
+		int checkRes = rservice.checkReservation(mb.getUserRn());
 
 
 		
@@ -65,6 +69,7 @@ public class detailReservation extends HttpServlet {
 			
 			System.out.println("세션 : "+session.getId());
 			request.setAttribute("hp", hp);
+			request.setAttribute("checkRes", checkRes);
 
 			
 			view.forward(request, response);
