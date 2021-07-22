@@ -51,7 +51,7 @@ public class BoardListServlet extends HttpServlet {
 
 		// 총 페이지 수 계산을 위한 목록 개수 조회
 		int listCount = bservice.getListCount();
-		//System.out.println("총 목록개수 : "+listCount);
+		// System.out.println("총 목록개수 : "+listCount);
 
 		// 요청한 페이지의 출력될 목록의 행번호를 계산
 		// 한 페이지에 출력할 목록 개수가 10개인 경우
