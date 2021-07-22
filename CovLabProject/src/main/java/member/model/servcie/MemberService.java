@@ -13,11 +13,11 @@ import member.model.vo.Member;
 public class MemberService {
            MemberDao mdao = new MemberDao(); 
 	
-	public Member searchUser(String username, String userrn){
+	public int searchUser(String username, String userrn){
 		Connection conn =getConnection();
-			Member member=mdao.searchUser(conn, username, userrn);
-			close(conn);
-			return member;
+	    int idCount =mdao.searchUser(conn, username, userrn);
+		close(conn);
+       return idCount;
 		}
 
 	public Member selectLogin(String userid, String userpw) {
@@ -27,7 +27,27 @@ public class MemberService {
 		return member;
 	}
 
+	public int insertMember(Member member) {
+		Connection conn = getConnection();
+		int result = mdao.insertMember(conn, member);
+		if(result > 0) {
+			commit(conn);
+		}else {
+			rollback(conn);
+		}
+		close(conn);
+		return result;
+	}
+
+	public int selectCheckId(String userid) {
+		Connection conn = getConnection();
+		int count = mdao.selectCheckId(conn, userid);
+		close(conn);
+		return count;
+	}
+	}
+
 	
 
-}
+
 
