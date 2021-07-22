@@ -1,28 +1,23 @@
-package member.controller;
+package reservation.model.controller;
 
 import java.io.IOException;
-
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import member.model.servcie.MemberService;
-import member.model.vo.Member;
-
 /**
- * Servlet implementation class MemberCheckServlet
+ * Servlet implementation class cancelReservation
  */
-@WebServlet("/mcheck")
-public class MemberCheckServlet extends HttpServlet {
+@WebServlet("/cancelres")
+public class cancelReservation extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public MemberCheckServlet() {
+    public cancelReservation() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -31,20 +26,8 @@ public class MemberCheckServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		request.setCharacterEncoding("utf-8");
 		
-		String username = request.getParameter("username");
-		String userrn = request.getParameter("userrn");
 		
-		int idCount= new MemberService().searchUser(username, userrn);
-		System.out.print(username + userrn);
-		RequestDispatcher view = null;
-		if(idCount > 0) { //이미 등록된 회원
-			   response.sendRedirect("/semi/views/member/login.jsp");
-		}else {
-			 response.sendRedirect("/semi/views/member/enroll.html");
-			    //view.forward(request, response);
-		}
 	}
 
 	/**

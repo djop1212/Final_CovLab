@@ -38,6 +38,49 @@ public class BoardService {
 		return result;
 	}
 
+	public int insertBoard(Board board) {
+		Connection conn = getConnection();
+		int result = bdao.insertBoard(conn, board);
+		if(result >0 ) {
+			commit(conn);
+		}else {
+			rollback(conn);
+		}
+		close(conn);
+		return result;
+	}
+
+	public void addReadCount(int boardNo) {
+		Connection conn = getConnection();
+		int result = bdao.updateReadCount(conn, boardNo);
+		
+		if(result>0) {
+			commit(conn);
+		}else {
+			rollback(conn);
+		}
+		close(conn);
+	}
+
+	public Board selectBoard(int boardNo) {
+		Connection conn = getConnection();
+		Board board = bdao.selectBoard(conn, boardNo);
+		close(conn);
+		return board;
+	}
+
+	public int updateBoard(Board board) {
+		Connection conn = getConnection();
+		int result = bdao.updateBoard(conn, board);
+		if(result >0 ) {
+			commit(conn);
+		}else {
+			rollback(conn);
+		}
+		close(conn);
+		return result;
+	}
+
 	
 
 }
