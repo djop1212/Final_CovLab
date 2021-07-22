@@ -9,26 +9,26 @@ import java.sql.ResultSet;
 import member.model.vo.Member;
 public class MemberDao {
 
-	public int searchUser(Connection conn, String username, String userrn) {
-        int idCount = 0;
+	public Member searchUser(Connection conn, String username, String userrn) {
+		Member member = null;
 		PreparedStatement pstmt = null;
-		ResultSet rset = null;
+		ResultSet rset =null;
 		
-		String query = "select count(user_id) from members where user_name = ? and user_rn = ?";
+		String query = "select * from members where user_name = ? and user_rn = ?";
 		
 		try {
 			pstmt = conn.prepareStatement(query);
 			
 			pstmt.setString(1, username);
 			pstmt.setString(2, userrn);
-			 
-			rset =pstmt.executeQuery();
-			if(rset.next()) {
-				idCount = rset.getInt(1);
-				
-				System.out.println("idCount : " + idCount);
-			}
 			
+			rset = pstmt.executeQuery();
+			if(rset.next()) {
+				member = new Member();
+				member.setUserName(username);
+				member.setUserRn(userrn);
+				
+			}
 		} catch (Exception e) {
 			e.printStackTrace();
 		}finally {
@@ -36,7 +36,7 @@ public class MemberDao {
 			close(pstmt);
 		}
 		   
-		return idCount;
+		return member;
 	}
 
 	public Member selectLogin(Connection conn, String userid, String userpw) {
@@ -80,59 +80,4 @@ public class MemberDao {
 		   
 		return member;
 	}
-
-	public int insertMember(Connection conn, Member member) {
-		int result = 0;
-		PreparedStatement pstmt = null;
-		
-		String query ="insert into members values ((select max(user_no) + 1 from members), default, ?, ?, ?, ?, ?, ?, ?, default, ?, default)";
-	
-		try {
-			pstmt = conn.prepareStatement(query);
-			pstmt.setString(1, member.getUserId());
-			pstmt.setString(2, member.getUserPw());
-			pstmt.setString(3, member.getUserName());
-			pstmt.setString(4, member.getUserRn());
-			pstmt.setString(5, member.getUserEmail());
-			pstmt.setString(6, member.getUserPhone());
-			pstmt.setString(7, member.getUserAddress());
-			pstmt.setString(8, member.getSmsAgr());
-			
-			result=pstmt.executeUpdate();
-		} catch (Exception e) {
-			e.printStackTrace();
-		}finally {
-			close(pstmt);
-		}return result;
-	}
-
-	public int selectCheckId(Connection conn, String userid) {
-		 int idCount = 0;
-			PreparedStatement pstmt = null;
-			ResultSet rset = null;
-			
-			String query = "select count(user_id) from members where user_id = ?";
-			
-			try {
-				pstmt = conn.prepareStatement(query);
-				
-				pstmt.setString(1, userid);
-			
-				 
-				rset =pstmt.executeQuery();
-				if(rset.next()) {
-					idCount = rset.getInt(1);
-					
-					System.out.println("idCount : " + idCount);
-				}
-				
-			} catch (Exception e) {
-				e.printStackTrace();
-			}finally {
-				close(rset);
-				close(pstmt);
-			}
-			   
-			return idCount;
-		}
 }
