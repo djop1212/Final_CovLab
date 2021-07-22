@@ -43,4 +43,12 @@ public class reservationService {
 		return vac;
 	}
 	
+	
+	public int checkReservation(String user_rn) {
+		Connection conn = getConnection();
+		int check = rdao.checkReservation(conn, user_rn);
+		close(conn);
+		return check;
+	}
+	
 }

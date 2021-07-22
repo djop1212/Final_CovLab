@@ -83,9 +83,8 @@ public class insertReservation extends HttpServlet {
 			view = request.getRequestDispatcher(
 //					"views/reservation/index_reservation.jsp");
 //			view.forward(request, response);
-					"views/common/error.jsp");
-			request.setAttribute("message", 
-					"등록 성공!");
+					"views/reservation/complete.jsp");
+			view.forward(request, response);
 		}else {
 			System.out.println("실패");
 			view = request.getRequestDispatcher(

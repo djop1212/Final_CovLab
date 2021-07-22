@@ -144,4 +144,31 @@ public class reservationDao {
 		return vac;
 	}
 	
+	public int checkReservation(Connection conn, String user_rn) {
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		int check = 0;
+		
+		String query = "select count(*) from reservation where user_no = ? and state = 'W' ";
+		
+		try {
+			pstmt = conn.prepareStatement(query);
+			pstmt.setString(1, user_rn);
+			
+			rset = pstmt.executeQuery();
+			
+			if(rset.next()) {
+				check = rset.getInt(1);
+				System.out.println("check : " + check);
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally {
+			close(rset);
+			close(pstmt);
+		}
+		
+		return check;
+	}
 }

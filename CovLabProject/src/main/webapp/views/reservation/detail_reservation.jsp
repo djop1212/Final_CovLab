@@ -1,3 +1,4 @@
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>  
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8" import = "reservation.model.vo.Hospital" %>
 <%
@@ -28,6 +29,24 @@
     
     function termsPopup(serial,reg,rev){
     	var fnm = document.info;
+		var serial_num = fnm.serial.value;
+		var reg_bus_no = fnm.value.value;
+		var rev_date = fnm.rev.value
+    	
+        var url = "/semi/tpop";
+        var name = "termsPopupPage";
+        var option = "width = 500, height = 500, top = 300, left = 800, location = no"
+
+        fnm.action = url;
+        fnm.target = "termsPopupPage";
+
+        
+        window.open('', name, option);
+        fnm.submit();
+    }
+    /* 
+    function termsPopup(serial,reg,rev){
+    	var fnm = document.info;
     	
         var url = "/semi/tpop";
         var name = "termsPopupPage";
@@ -42,8 +61,25 @@
         
         window.open('', name, option);
         fnm.submit();
+    } */
+    function cancelRes(serial,reg,rev){
+    	var fnm = document.info;
+		var serial_num = fnm.serial.value;
+		var reg_bus_no = fnm.value.value;
+		var rev_date = fnm.rev.value
+    	
+        var url = "/semi/cancelres";
+        var name = "termsPopupPage";
+        var option = "width = 500, height = 500, top = 300, left = 800, location = no"
+
+        fnm.action = url;
+        fnm.target = "termsPopupPage";
+
         
+        window.open('', name, option);
+        fnm.submit();
     }
+    
 </script>
 <style type="text/css">
 
@@ -101,19 +137,25 @@ outline:none;
 											<label for="hp_phone">전화번호 : </label><input type="text" name="hp_phone" value="<%=hp.getHp_phone() %>" readonly class="inputBox">
 										</div>
 										<div class="form-group">
-											<label for="">백신 : </label> <input type="text" name="serial_num" value="PF0003" readonly class="inputBox" id="serial">
+											<label for="">백신 : </label> <input type="text" name="serial_num" value="PF0002" readonly class="inputBox" id="serial">
 										</div>
 										<div class="form-group">
 											<label for="">예약일시 : </label> 
-											<input type="text" name="rev_date" value="2021-06-29 09:30:00" readonly class="inputBox" id="rev">
+											<input type="text" name="rev_date" value="2021-06-03 10:30:00" readonly class="inputBox" id="rev">
 											<br>
 											<a href = "javascript:void(0)" target = "_blank" onclick="reservationDatePopup()">날짜 선택</a>
 										</div>
 										<input type="hidden" name="reg_bus_no" value=<%= hp.getReg_bus_no() %> class="inputBox" id="reg">
 									<div class="form-row  text-center">
 									
-									
-										<a onclick= "termsPopup('serial','reg', 'rev' )" class="btn">예약</a>
+									<c:choose>
+										<c:when test=" ${checkRes} >= 1">
+									<a onclick= "termsPopup('serial','reg', 'rev' )" class="btn">예약</a>
+										</c:when>
+										<c:otherwise>
+									<a onclick= "termsPopup('serial','reg', 'rev' )" class="btn">예약 취소</a>
+										</c:otherwise>
+									</c:choose>
 										<button class="btn" type="submit">예약</button>
 									<!--<a href="/semi/insertres" type="submit" class="btn">예약</a> -->
 										<button class="btn" value="/semi/detailhp">대리예약</button>

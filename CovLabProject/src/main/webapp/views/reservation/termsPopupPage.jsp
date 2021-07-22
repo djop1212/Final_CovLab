@@ -35,12 +35,13 @@ input:focus {
 			var reg_bus_no = fnm.reg_bus_no.value;
 			var rev_date = fnm.rev_date.value
 			
-	        fnm.method = "get";
+	        fnm.method = "post";
 	        fnm.action = url;
 
 	        alert("실행");
-	        
+
 	        fnm.submit();
+	        
 		}
 	}
 </script>
