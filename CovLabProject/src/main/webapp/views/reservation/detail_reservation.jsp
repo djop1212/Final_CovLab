@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8" import = "reservation.vo.Hospital" %>
+	pageEncoding="UTF-8" import = "reservation.model.vo.Hospital" %>
 <%
 	Hospital hp = (Hospital)request.getAttribute("hp");
 	
@@ -18,6 +18,49 @@
 <!-- GOOGLE FONTS-->
     <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css' />
     <script src="http://maps.google.com/maps/api/js?q=seoul&key=AIzaSyCZ8XJruaL1nd6GJOryueJE_Av5O6mU5H0" type="text/javascript"></script>
+<script>
+    function reservationDatePopup(){
+        var url = "/semi/reservationDatePopup";
+        var name = "reservationDatePopup";
+        var option = "width = 500, height = 500, top = 300, left = 800, location = no"
+        window.open(url, name, option);
+    }
+    
+    function termsPopup(serial,reg,rev){
+    	var fnm = document.info;
+    	
+        var url = "/semi/tpop";
+        var name = "termsPopupPage";
+        var option = "width = 500, height = 500, top = 300, left = 800, location = no"
+        
+
+        fnm.action = url;
+        fnm.target = "termsPopupPage";
+        fnm.serial_num.value = document.getElementById(serial).value;
+        fnm.reg_bus_no.value = document.getElementById(reg).value;
+        fnm.rev_date.value = document.getElementById(rev).value;
+        
+        window.open('', name, option);
+        fnm.submit();
+        
+    }
+</script>
+<style type="text/css">
+
+
+input:focus {
+outline:none;
+}
+.inputBox{
+	border:none;
+}
+#areaBox{
+	overflow: hidden;
+	resize:none;
+	border:none;
+}
+
+</style>
 </head>
 <body>
 	<div class="content-wrap">
@@ -42,18 +85,45 @@
 					<div class="row">
 						
 						<div class="col-lg-3 p-0 ">
-
-							<div class="card h-100">
+							<div class="card h-100 m-0">
+							<div class="card_header">
+							</div>
 								<div class="card-body">
-									<h5 class="card-title text-center">병원1</h5><br>
-									<ul class="list-group list-group-flush list-unstyled">
-										<li class="list-group-item">주소 : <%=hp.getHp_address() %>></li>
-										<li class="list-group-item">전화번호 : 02-123-4567</li>
-										<li class="list-group-item">운영 시간 : 12 ~ 14</li>
-									</ul>
+								 	<h5 class="card-title text-center" id="hp_name"><%=hp.getHp_name() %></h5>
+									
+									<form action ="/semi/insertres" method="post" name="info" autocomplete="off">
+										<div class="form-group">
+											<label for="hp_address">주소 : </label> 
+											<textarea name="hp_address" readonly id="areaBox" style="display:block;"><%=hp.getHp_address() %>
+											</textarea>
+										</div>
+										<div class="form-group">
+											<label for="hp_phone">전화번호 : </label><input type="text" name="hp_phone" value="<%=hp.getHp_phone() %>" readonly class="inputBox">
+										</div>
+										<div class="form-group">
+											<label for="">백신 : </label> <input type="text" name="serial_num" value="PF0003" readonly class="inputBox" id="serial">
+										</div>
+										<div class="form-group">
+											<label for="">예약일시 : </label> 
+											<input type="text" name="rev_date" value="2021-06-29 09:30:00" readonly class="inputBox" id="rev">
+											<br>
+											<a href = "javascript:void(0)" target = "_blank" onclick="reservationDatePopup()">날짜 선택</a>
+										</div>
+										<input type="hidden" name="reg_bus_no" value=<%= hp.getReg_bus_no() %> class="inputBox" id="reg">
+									<div class="form-row  text-center">
+									
+									
+										<a onclick= "termsPopup('serial','reg', 'rev' )" class="btn">예약</a>
+										<button class="btn" type="submit">예약</button>
+									<!--<a href="/semi/insertres" type="submit" class="btn">예약</a> -->
+										<button class="btn" value="/semi/detailhp">대리예약</button>
+									</div>
+									</form>
+
 								</div>
 							</div>
 						</div>
+						
 						<div class="col-lg-9 p-0">
 							<div id="map" style="width:1200px; height:600px;"></div>
                     <script type="text/javascript">
