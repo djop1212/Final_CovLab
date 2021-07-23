@@ -1,8 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
+<<<<<<< Updated upstream
     pageEncoding="UTF-8" import="member.model.vo.Member"%>
     <%
     Member member = (Member)request.getAttribute("member");
     %>
+=======
+    pageEncoding="UTF-8" %>
+ 
+>>>>>>> Stashed changes
 <!DOCTYPE html>
 <html>
 <head>
