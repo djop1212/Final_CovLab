@@ -45,6 +45,13 @@ public class MemberService {
 		close(conn);
 		return count;
 	}
+
+	public int selectCheckId2(String username, String userrn) {
+		Connection conn =getConnection();
+		int idCount =mdao.selectCheckId2(conn, username, userrn);
+		close(conn);
+		return idCount;
+	}
 	}
 
 	

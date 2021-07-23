@@ -135,4 +135,34 @@ public class MemberDao {
 			   
 			return idCount;
 		}
+
+	public int selectCheckId2(Connection conn, String username, String userrn) {
+		int idCount = 0;
+		PreparedStatement pstmt = null;
+		ResultSet rset =null;
+		
+		String query = "select count(user_id) from members where user_name = ? and user_rn = ?";
+		
+		try {
+			pstmt = conn.prepareStatement(query);
+			
+			pstmt.setString(1, username);
+			pstmt.setString(2, userrn);
+			
+			rset = pstmt.executeQuery();
+			if(rset.next()) {
+				idCount = rset.getInt(1);
+				
+				System.out.println("idCount : " + idCount);
+			}
+	} catch (Exception e) {
+		e.printStackTrace();
+	}finally {
+		close(rset);
+		close(pstmt);
+	}
+	   
+	return idCount;
+}
+
 }

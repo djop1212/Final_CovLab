@@ -14,19 +14,7 @@
     <link href="/semi/resources/css/style.css" rel="stylesheet">
 <title>Insert title here</title>
 
-<script>
-function validate(){
-	var userid = documentgetElementById("userid").value;
-	var userpw = documentgetElementById("userpw").value;
-	
-	var re = /^[a-z0-9_]{4,20}$/;
-	if(!re.test(userpw)){
-		alert("영어, 숫자만 사용 최소 4글자 최대 20글자");
-		return false;
-	}
-	
-}
-</script>
+
 </head>
 <body class="bg-primary">
 
@@ -36,34 +24,22 @@ function validate(){
                 <div class="col-lg-6">
                     <div class="login-content">
                         <div class="login-logo">
-                            <a href="index.html"><span>Covlab</span></a>
+                            <a href="/semi/index.jsp"><span>Covlab</span></a>
                         </div>
                         <div class="login-form">
                             <h4>로그인</h4>
-                            <form action="/semi/login" method="post" onsubmit="return validate();">
-                              <div class="checkbox">
-                                    <label> 
-										<input type="checkbox" checked> 회원용
-									</label>
-									&nbsp; &nbsp;
-									 <label>
-										<input type="checkbox"> 관리자용
-									</label>
-                                </div>
+                            <form action="/semi/login" method="post" >
+                            
                                 <div class="form-group">
                                     <label>아이디</label>	
-                                    <input type="text" class="form-control" name="userid" id="userid"placeholder="아이디" required>
+                                    <input type="text" class="form-control" name="userid" id="userid" placeholder="아이디" required>
                                 </div>
                                 <div class="form-group">
                                     <label>비밀번호</label>
-                                    <input type="password" class="form-control" name="userpw" id="userpw"placeholder="비밀번호" required>
+                                    <input type="password" class="form-control" name="userpw" id="userpw" placeholder="비밀번호" required>
                                 </div>
                                 
-                                <div class="checkbox">
-                                    <label>
-										<input type="checkbox"> 저장하기
-									</label>
-                                </div>
+                                
                                 <button type="submit" class="btn btn-primary btn-flat m-b-30 m-t-30">로그인</button>
                                 </form>
                                 <div>
@@ -78,7 +54,7 @@ function validate(){
 									<br>
 									</div>
                                 <div class="register-link m-t-20 text-center">
-                                    <p>회원이 아니신가요? <Br><a href="/semi/views/member/register.html"> 가입하기</a></p>
+                                    <p>회원이 아니신가요? <Br><a href="/semi/views/member/enroll.html"> 가입하기</a></p>
                                 </div>
                             
                         </div>

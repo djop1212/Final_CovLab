@@ -39,9 +39,9 @@ public class MemberCheckServlet extends HttpServlet {
 		int idCount= new MemberService().searchUser(username, userrn);
 		System.out.print(username + userrn);
 		RequestDispatcher view = null;
-		if(idCount > 0) { //이미 등록된 회원
+		if(idCount > 0 ) { //이미 등록된 회원
 			   response.sendRedirect("/semi/views/member/login.jsp");
-		}else {
+		}else { //없는회원
 			 response.sendRedirect("/semi/views/member/enroll.html");
 			    //view.forward(request, response);
 		}

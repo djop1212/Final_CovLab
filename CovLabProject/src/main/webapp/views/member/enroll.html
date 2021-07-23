@@ -15,7 +15,14 @@
     <link href="/semi/resources/css/lib/helper.css" rel="stylesheet">
     <link href="/semi/resources/css/style.css" rel="stylesheet">
     
+    <script src="/semi/resources/js/address.js"></script>
+ <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
  <script type="text/javascript" src="/semi/resources/js/jquery-3.6.0.min.js"></script>
+
+<script type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.min.js" ></script>
+  <!-- iamport.payment.js -->
+<script type="text/javascript" src="https://cdn.iamport.kr/js/iamport.payment-1.1.5.js"></script>
  <script type="text/javascript">
  function dupIDCheck(){
 	 $.ajax({
@@ -41,19 +48,62 @@
 		//버튼 클릭이벤트 취소 (submit 으로 클릭 전달 막기 위함)
 		return false;
 	}
- function validate(){
+ 
+function validate(){
 	    var pwValue = document.getElementById("userpw").value;
 		var pwValue2 = document.getElementById("userpw2").value;
 		
-		if(pwValue !== pwValue2){
+		if(pwValue !== pwValue2){ //비번확인
 			alert("암호와 암호확인의 값이 일치하지 않습니다.");
 			document.getElementById("userpw2").value = "";
 			document.getElementById("userpw").select();
 			return false;  //전송 취소함
 		}
 		
-		return true;  //전송보냄
+	
+	
+var username = document.getElementById("username").value;//이름확인
+var re =/^[ㄱ-ㅎ|ㅏ-ㅣ|가-힝]{2,4}$/;
+if(!re.test(username)){// 한글자나 5글자이상 입력할시 뜨는 문구
+	 alert("한글로 2글자 이상 4글자 이하로 작성해주세요.")
+	 document.getElementById("username").value="";
+	 document.getElementById("username").focus();
+	 return false;
 	}
+	
+var userrn = document.getElementById("userrn").value; //주민번호 형식 정규식표현
+if(userrn.length != 14){//주민번호 자릿수 안맞을때 뜨는 문구
+	 alert("(-)포함 14자리 입력해주세요.");
+	 document.getElementById("userrn").value="";
+	 document.getElementById("userrn").select();
+	 return false;
+}
+var re2 =/\d{6}\-[1-4]\d{6}/;
+if(!re2.test(userrn)){//- 빼먹었을때 뜨는 문구
+	 alert("주민번호 형식이 맞지 않거나 잘못 입력하였습니다.")
+	 document.getElementById("userrn").value="";
+	 document.getElementById("userrn").focus();
+	 return false;
+}
+
+/* var re3 =/^([\w-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([\w-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$/;
+
+if(!re3.test(email)){
+	alert("이메일 형식이 틀렸습니다.")
+	document.getElementById("email").value="";
+	 document.getElementById("email").focus();
+	 return false;
+}
+ */
+/*  var re4= /^0(1|2[01679])\-[0-9]{3,4}\-[0-9]{4}$/;
+if(!re4.test(phone)){
+	alert("전화번호 형식이 틀렸습니다.")
+	document.getElementById("phone").value="";
+	 document.getElementById("phone").focus();
+	 return false;
+} */
+	
+}
  
  </script>
 </head>
@@ -66,7 +116,7 @@
                 <div class="col-lg-6">
                     <div class="login-content">
                         <div class="login-logo">
-                            <a href="index.html"><span>Focus</span></a>
+                            <a href="/semi/index.html"><span>CovLab</span></a>
                         </div>
                         <div class="login-form">
                             <h4>회원가입</h4>
@@ -96,28 +146,29 @@
                                 </div>
                                 <div class="form-group">
                                     <label>이메일</label>
-                                    <input type="email" name="email" id="email" class="form-control" placeholder="Email">
+                                    <input type="email" name="email" id="email" class="form-control" placeholder="Email" required>
                                 </div>
                                  <div class="form-group">
                                     <label>전화번호</label>
-                                    <input type="phone" name="phone" id="phone" class="form-control" placeholder="전화번호">
+                                    <input type="text" name="phone" id="phone" class="form-control" placeholder="전화번호">
                                 </div>
                                  <div class="form-group">
                                     <label>주소</label>
-                                    <input type="text" name="address" id="address" class="form-control" placeholder="주소" required>
+                                    
+                                    <input type="text" id="sample6_postcode" class="form-control" placeholder="우편번호">
+                                    <input type="button"  class="form-control"onclick="sample6_execDaumPostcode()" value="우편번호 찾기"><br>
+                                    <input type="text" id="sample6_address"  class="form-control" placeholder="주소"><br>
+                                    <input type="text" id="sample6_detailAddress" class="form-control" placeholder="상세주소">
+                                    <input type="text" id="sample6_extraAddress" class="form-control" placeholder="참고항목">
                                 </div>
                                  <div class="form-group">
                                     <label>수신동의</label>
                                     <Br>
                                     <label> <input type="radio" value="Y" name="smsagr" id="smsagr"  checked >네.</label> &nbsp;
-                                    <label> <input type="radio" value="N" name="smsagr" id="smsagr"  >아니오.<label>
+                                    <label> <input type="radio" value="N" name="smsagr" id="smsagr"  >아니오.</label>
                                 </div>
                               
-                                <div class="checkbox">
-                                    <label>
-										<input type="checkbox"> 이용약관 동의
-									</label>
-                                </div>
+                                
                                 <button type="submit" class="btn btn-primary btn-flat m-b-30 m-t-30">가입하기</button>
                                 
                                 <div class="register-link m-t-15 text-center">
