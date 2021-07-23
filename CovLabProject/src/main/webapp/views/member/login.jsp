@@ -13,12 +13,6 @@
     <link href="/semi/resources/css/lib/helper.css" rel="stylesheet">
     <link href="/semi/resources/css/style.css" rel="stylesheet">
 <title>Insert title here</title>
-<<<<<<< Updated upstream
-=======
-
-
-
->>>>>>> Stashed changes
 </head>
 <body class="bg-primary">
 
@@ -53,10 +47,14 @@
                                 </form>
                                 <div>
                                 <label class="pull-left">
-										<a href="/semi/views/member/findUsers.jsp">아이디 찾기 및 비밀번호 찾기</a>
+										<a href="#">아이디 찾기</a>
 									</label>
 									<br><br>
-								
+									
+                                <label class="pull-left">
+										<a href="#">비밀번호 찾기</a>
+									</label>
+									<br>
 									</div>
                                 <div class="register-link m-t-20 text-center">
                                     <p>회원이 아니신가요? <Br><a href="#"> 가입하기</a></p>

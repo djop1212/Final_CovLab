@@ -27,43 +27,6 @@ public class MemberService {
 		return member;
 	}
 
-<<<<<<< Updated upstream
-=======
-	public int insertMember(Member member) {
-		Connection conn = getConnection();
-		int result = mdao.insertMember(conn, member);
-		if(result > 0) {
-			commit(conn);
-		}else {
-			rollback(conn);
-		}
-		close(conn);
-		return result;
-	}
-
-	public int selectCheckId(String userid) {
-		Connection conn = getConnection();
-		int count = mdao.selectCheckId(conn, userid);
-		close(conn);
-		return count;
-	}
-
-	public int selectCheckId2(String username, String userrn) {
-		Connection conn =getConnection();
-		int idCount =mdao.selectCheckId2(conn, username, userrn);
-		close(conn);
-		return idCount;
-	}
-
-	public int searchEmail(String useremail) {
-		Connection conn =getConnection();
-		int idCount =mdao.searchEmail(conn, useremail);
-		close(conn);
-		return idCount;
-	}
-	}
-
->>>>>>> Stashed changes
 	
 
 }
