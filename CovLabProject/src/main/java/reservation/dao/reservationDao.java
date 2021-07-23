@@ -7,8 +7,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import reservation.vo.Hospital;
-import reservation.vo.Members;
-import reservation.vo.Reservation;
 
 public class reservationDao {
 
@@ -44,72 +42,4 @@ public class reservationDao {
 		
 		return hp;
 	}
-	
-	public Members selectOneMember(Connection conn, String user_id) {
-		PreparedStatement pstmt = null;
-		ResultSet rset = null;
-		Members mb = null;
-		
-		System.out.println("dao : "+user_id);
-		String query = "select user_rn from members where user_id = ?";
-		
-		try {
-			pstmt = conn.prepareStatement(query);
-			pstmt.setString(1, user_id);			
-			
-			rset = pstmt.executeQuery();
-			
-			if(rset.next() ) {
-				mb = new Members();
-				
-				mb.setUserId(user_id);
-				mb.setUserPw(rset.getString("user_pw"));
-				mb.setUserName(rset.getString("user_name"));
-				mb.setUserRn(rset.getString("user_rn"));
-				mb.setUserAddress(rset.getString("user_address"));
-				mb.setUserEmail(rset.getString("user_email"));
-				mb.setUserGrade(rset.getString("user_grade"));
-				mb.setUserNo(rset.getInt("user_no"));
-				mb.setUserPhone(rset.getString("user_phone"));
-				mb.setSubUserNo(rset.getInt("sub_user_no"));
-				mb.setInoCnt(rset.getInt("ino_cnt"));
-				mb.setSmsAgr(rset.getString("sms_agr"));
-			}
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}finally {
-			close(rset);
-			close(pstmt);
-		}
-		
-		return mb;
-	}
-	
-	public int insertReservation(Connection conn, Reservation res) {
-		PreparedStatement pstmt = null;
-		int result = 0;
-		
-		String query = "insert into reservation values (?,default,?,?,?,null,null,default)";
-		
-		try {
-			pstmt = conn.prepareStatement(query);
-			pstmt.setString(1, res.getSerial_num());	
-			pstmt.setString(2, res.getUser_no());	
-			pstmt.setString(3, res.getReg_bus_no());	
-			pstmt.setTimestamp(4, res.getRev_date());	
-			
-			result = pstmt.executeUpdate();
-			System.out.println("result: " + result);
-				
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}finally {
-			close(pstmt);
-		}
-		
-		return result;
-	}
-	
 }

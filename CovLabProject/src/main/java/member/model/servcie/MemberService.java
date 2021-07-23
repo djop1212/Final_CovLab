@@ -27,6 +27,8 @@ public class MemberService {
 		return member;
 	}
 
+<<<<<<< Updated upstream
+=======
 	public int insertMember(Member member) {
 		Connection conn = getConnection();
 		int result = mdao.insertMember(conn, member);
@@ -52,9 +54,17 @@ public class MemberService {
 		close(conn);
 		return idCount;
 	}
+
+	public int searchEmail(String useremail) {
+		Connection conn =getConnection();
+		int idCount =mdao.searchEmail(conn, useremail);
+		close(conn);
+		return idCount;
+	}
 	}
 
+>>>>>>> Stashed changes
 	
 
-
+}
 

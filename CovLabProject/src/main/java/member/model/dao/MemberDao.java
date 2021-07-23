@@ -80,6 +80,8 @@ public class MemberDao {
 		   
 		return member;
 	}
+<<<<<<< Updated upstream
+=======
 
 	public int insertMember(Connection conn, Member member) {
 		int result = 0;
@@ -165,4 +167,33 @@ public class MemberDao {
 	return idCount;
 }
 
+	public int searchEmail(Connection conn, String useremail) {
+		int idCount = 0;
+		PreparedStatement pstmt = null;
+		ResultSet rset =null;
+		
+		String query = "select count(user_email) from members where user_email = ? ";
+		
+		try {
+			pstmt = conn.prepareStatement(query);
+			
+			pstmt.setString(1, useremail);
+			
+			rset = pstmt.executeQuery();
+			if(rset.next()) {
+				idCount = rset.getInt(1);
+				
+				System.out.println("idCount : " + idCount);
+			}
+	} catch (Exception e) {
+		e.printStackTrace();
+	}finally {
+		close(rset);
+		close(pstmt);
+	}
+	   
+	return idCount;
+}
+
+>>>>>>> Stashed changes
 }

@@ -71,7 +71,7 @@ function showWriteForm(){
 									<option value="searchboarddate">작성일</option>
 								</select> &nbsp;
 								<input id="searchKeyword" name="searchKeyword" type="text">
-								<input type="submit" value="검색 " class="btn btn-primary">
+								<input type="submit" value="검색 ">
 							</div>
 							
 							<table class="display table table-borderd table-hover">
@@ -91,21 +91,17 @@ function showWriteForm(){
 									<%
 									for (Board b : list) {
 									%>
-									
 									<tr>
 										<td><%=b.getBoardNo()%></td>
-										<td><a href="/semi/bdetail?bno=<%= b.getBoardNo() %>&page=<%= currentPage %>">
-										<%=b.getBoardTitle()%></a></td>
+										<td><%=b.getBoardTitle()%></td>
 										<td><%=b.getBoardWriter()%></td>
 										<td><%=b.getBoardDate()%></td>
 										<td><%=b.getViewCnt()%></td>
 										<td><%=b.getRecommendCnt()%></td>
 									</tr>
-									
 									<%
 									} //list:for each
 									%>
-									
 
 								</tbody>
 
@@ -122,7 +118,7 @@ function showWriteForm(){
 							<% } %>
 							<!-- 이전 페이지 그룹으로 이동 -->
 							<% if((currentPage -10 ) < startPage && (currentPage - 10) > 1){ %>
-									<a href="/semi/blist?page=<%= startPage - 10 %>">[이전그룹] </a> &nbsp;
+									<a href="/first/blist?page=<%= startPage - 10 %>">[이전그룹] </a> &nbsp;
 							<% }else{ %>
 									[이전그룹] &nbsp;
 							<% } %>
@@ -148,13 +144,8 @@ function showWriteForm(){
 									<a href="/semi/blist?page=<%= maxPage %>">[맨끝]</a> &nbsp;
 							<% } %>
 							
-							
 							<div align="right">
-							<% if(false){ //로그인 안했을 때 %>
-							<button 로그인 창으로 넘어가기>글쓰기</button>
-							<% }else{  %>
-							<button onclick="showWriteForm();" class="btn btn-primary wrtie">글쓰기</button>
-							<% } %>
+							<button onclick="showWriteForm();">글쓰기</button>
 							</div>
 						</div>
 					</div>

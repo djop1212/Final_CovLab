@@ -1,4 +1,4 @@
-package reservation.model.controller;
+package member.controller;
 
 import java.io.IOException;
 
@@ -9,17 +9,19 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import member.model.servcie.MemberService;
+
 /**
- * Servlet implementation class reservationDatePopup
+ * Servlet implementation class FindIdEmail
  */
-@WebServlet("/reservationDatePopup")
-public class reservationDatePopup extends HttpServlet {
+@WebServlet("/findidemail")
+public class FindIdEmail extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public reservationDatePopup() {
+    public FindIdEmail() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -28,15 +30,18 @@ public class reservationDatePopup extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        request.setCharacterEncoding("utf-8");
 		
-		/*
-		 * Members mb = rservice.selectOneMember(user_id);
-		 */
-		// TODO Auto-generated method stub
+		String email = request.getParameter("email");
+		
+		
+		int idCount= new MemberService().searchUser(email);
+		System.out.print(email);
 		RequestDispatcher view = null;
-		view = request.getRequestDispatcher("views/reservation/reservationDatePopup.jsp");
-		view.forward(request, response);
-	}
+		if(idCount > 0 ) { //팝업창
+			   response.sendRedirect("/semi/views/member/");
+		}
+
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)

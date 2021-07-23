@@ -1,0 +1,17 @@
+CovLabProject/src/main/webapp/META-INF/context.xml
+CovLabProject/src/main/webapp/WEB-INF/jspwork/org/apache/jsp/index_jsp.class
+.project
+.metadata
+.classpath
+.settings/
+.loadpath
+.buildpath
+/build/
+/bin/
+target/
+META-INF/
+classes/
+jspwork/
+*.xml
+CovLabProject/src/main/webapp/WEB-INF/jspwork/org/apache/jsp/index_jsp.java
+CovLabProject/src/main/webapp/WEB-INF/jspwork/org/apache/jsp/views/information/information_jsp.java
